@@ -1,8 +1,7 @@
+const apiKey = "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";
 const { Configuration, OpenAIApi } = require("openai");
-const apiKey = "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";
 
-const express = require('express');
-var cors = require('cors');
+const express = require('express');var cors = require('cors');
 const app = express()
 
 const configuration = new Configuration({
@@ -23,7 +22,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
 //POST method route
-app.post('/fortuneTell',async function (req, res) {
+app.get('/fortuneTell', async function (req, res) {
 
     const chatCompletion = await openai.createChatCompletion({
         model: "gpt-3.5-turbo",
@@ -34,9 +33,9 @@ app.post('/fortuneTell',async function (req, res) {
             {role: "user", content: "오늘의 운세가 뭐야?"},
         ],
     });
-    console.log(chatCompletion.data.choices[0].message['content']);
-    
-    res.send('POST request to the homepage');
+    let forturne = chatCompletion.data.choices[0].message['content'];
+    console.log(forturne);
+    res.send(forturne);
   });
 
-app.listen(3000)
+app.listen(8087)
