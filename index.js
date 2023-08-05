@@ -5,10 +5,12 @@ const express = require('express');
 const exp = require("constants");
 const app = express()
 
+app.use(express.json()) 
+app.use(express.urlencoded({extended: true}))
+
 //POST method route
 app.post('/', function (req, res) {
-    app.use(express.json()) 
-    app.use(express.urlencoded({extended: true``}))
+
     res.send('POST request to the homepage');
   });
 
